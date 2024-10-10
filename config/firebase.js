@@ -12,6 +12,7 @@ admin.initializeApp({
   databaseURL,
 });
 
+const auth = admin.auth();
 const db = admin.firestore();
 
-module.exports = db;
+module.exports = { auth, db };
