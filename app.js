@@ -14,7 +14,7 @@ const app = express();
 app.use(middlewares);
 
 // Use the places routes
-app.use("/api", placesRoutes);
+app.use("/api/places", placesRoutes);
 
 // Use the favorites routes
 app.use('/api/favorites', favoritesRoutes);

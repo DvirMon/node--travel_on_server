@@ -1,5 +1,5 @@
 // services/favoritesService.js
-const db = require("../config/firebase");
+const {db} = require("../config/firebase");
 const createFavorite = require("../helpers/createFavorite");
 
 // Create a new favorite document
@@ -19,7 +19,8 @@ async function loadFavorites(userId) {
   if (snapshot.empty) {
     return null;
   }
-
+  
+  
   const doc = snapshot.docs[0];
 
   const favorite = { ...doc.data(), id: doc.id };
