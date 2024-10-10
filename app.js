@@ -6,12 +6,16 @@ dotenv.config();
 const middlewares = require("./middleware");
 const errorHandler = require("./middleware/errorHandler");
 
+const authRoutes = require('./routes/authRoutes');
 const placesRoutes = require("./routes/placesRoutes");
 const favoritesRoutes = require('./routes/favoritesRoutes');
 
 const app = express();
 
 app.use(middlewares);
+
+// Use the auth routes
+app.use('/api/auth', authRoutes);
 
 // Use the places routes
 app.use("/api/places", placesRoutes);
