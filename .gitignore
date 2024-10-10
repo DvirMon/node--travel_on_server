@@ -1,0 +1,46 @@
+# Node.js dependencies
+/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.test
+
+# npm package files
+package-lock.json
+yarn.lock
+
+# Coverage directory used by testing frameworks like Jest
+coverage
+
+# Build output
+dist/
+build/
+
+# Temporary directories and files
+tmp/
+temp/
+
+# IDE/Editor-specific files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Optional: Ignore production directories for specific workflows
+/.docker
+/.cache
+
+# Ignore debugging files
+debug.log
+
+# Firebase configuration
+firebase-config.json
