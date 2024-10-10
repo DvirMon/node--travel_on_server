@@ -5,7 +5,9 @@ dotenv.config();
 
 const middlewares = require("./middleware");
 const errorHandler = require("./middleware/errorHandler");
+
 const placesRoutes = require("./routes/placesRoutes");
+const favoritesRoutes = require('./routes/favoritesRoutes');
 
 const app = express();
 
@@ -13,6 +15,9 @@ app.use(middlewares);
 
 // Use the places routes
 app.use("/api", placesRoutes);
+
+// Use the favorites routes
+app.use('/api/favorites', favoritesRoutes);
 
 app.get("/", (req, res) => {
   res.send("Server is running");
