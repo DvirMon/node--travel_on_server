@@ -1,33 +1,27 @@
 const express = require("express");
-const cors = require("cors");
 const dotenv = require("dotenv");
 
 dotenv.config();
 
-const db = require("./config/firebase");
+const middlewares = require("./middleware");
+const errorHandler = require("./middleware/errorHandler");
+const placesRoutes = require("./routes/placesRoutes");
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+app.use(middlewares);
 
-app.use(cors());
-app.use(express.json());
-
-app.get("/api/places", async (req, res) => {
-  try {
-    const placesSnapshot = await db.collection("vacations").get();
-
-    const places = placesSnapshot.docs.map((doc) => doc.data());
-
-    res.status(200).send(places);
-  } catch (error) {
-    res.status(500).send("Error retrieving users");
-  }
-});
+// Use the places routes
+app.use("/api", placesRoutes);
 
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
+
+// Use global error handler
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
