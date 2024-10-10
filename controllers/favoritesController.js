@@ -14,9 +14,7 @@ exports.getFavorites = async (req, res) => {
 
 // Controller for creating a new favorite
 exports.createFavorite = async (req, res) => {
-    const { userId } = req.body; // Assuming userId is passed in the body
-    
-    console.log(userId)
+  const { userId } = req.body; // Assuming userId is passed in the body
   try {
     const newFavorite = await favoritesService.createNewFavorite(userId);
     res.status(201).json(newFavorite);
