@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const db = require("./firebase");
+const db = require("./config/firebase");
 
 const app = express();
 
