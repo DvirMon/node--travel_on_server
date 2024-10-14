@@ -1,6 +1,5 @@
 // controllers/authController.js
 const authService = require("../services/authService");
-const mapUserRecordToUser = require("../helpers/mapToUser");
 
 // Register a new user with email and password
 exports.register = async (req, res) => {
@@ -62,18 +61,3 @@ exports.loginWithGoogle = async (req, res) => {
   }
 };
 
-// Create a new user in Firestore
-exports.createFirestoreUser = async (req, res) => {
-  const { userId, userData } = req.body;
-
-  if (!userId || !userData) {
-    return res.status(400).json({ error: "UserId and userData are required" });
-  }
-
-  try {
-    await authService.createFirestoreUser(userId, userData);
-    res.status(201).json({ message: "User created in Firestore successfully" });
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-};

@@ -1,5 +1,6 @@
 // services/authService.js
 const { auth, db } = require("../config/firebase");
+const { saveUserToFirestore } = require("../services/usersService");
 const mapUserRecordToUser = require("../helpers/mapToUser");
 
 const createUserWithEmailAndPassword = async (email, password) => {
@@ -28,7 +29,7 @@ const signInWithEmailAndPassword = async (email, password) => {
   try {
     const userRecord = await auth.getUserByEmail(email);
 
-    // signInWithPassword
+    const x = await auth.signInWithPassword(password);
 
     // 2. Fetch additional user data from Firestore using the user's UID
     const usersSnapshot = await db
@@ -47,7 +48,6 @@ const signInWithEmailAndPassword = async (email, password) => {
 
     return user;
   } catch (error) {
-    console.log(error);
     throw new Error("Error logging in: " + error.message);
   }
 };
@@ -63,28 +63,8 @@ const loginWithGoogle = async (idToken) => {
   }
 };
 
-const createFirestoreUser = async (userId, userData) => {
-  try {
-    await db.collection("users").doc(userId).set(userData);
-    return { success: true };
-  } catch (error) {
-    throw new Error("Error creating user in Firestore: " + error.message);
-  }
-};
-
-// Function to save the user object to Firestore in the "users" collection
-const saveUserToFirestore = async (user) => {
-  try {
-    const userDocRef = db.collection("users").doc(user.uid);
-    await userDocRef.set(user); // Save the user object to Firestore
-  } catch (error) {
-    throw new Error("Error saving user to Firestore: " + error.message);
-  }
-};
-
 module.exports = {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   loginWithGoogle,
-  createFirestoreUser,
 };

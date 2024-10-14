@@ -13,7 +13,4 @@ router.post('/login', authController.login);
 // POST: Login with Google
 router.post('/google', authController.loginWithGoogle);
 
-// POST: Create a new user in Firestore (optional)
-router.post('/create', authController.createFirestoreUser);
-
 module.exports = router;
