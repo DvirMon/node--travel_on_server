@@ -7,8 +7,6 @@ const createUserWithEmailAndPassword = async (email, password) => {
     const userRecord = await auth.createUser({ email, password });
     const user = mapUserRecordToUser(userRecord);
 
-    console.log(user)
-
     // Try saving the user to Firestore
     try {
       await saveUserToFirestore(user);
@@ -16,12 +14,13 @@ const createUserWithEmailAndPassword = async (email, password) => {
     } catch (firestoreError) {
       // If saving to Firestore fails, delete the user from Firebase Auth
       await auth.deleteUser(userRecord.uid);
+
       throw new Error(
         "Error saving user to Firestore: " + firestoreError.message
       );
     }
   } catch (error) {
-    throw new Error("Error creating user: " + error.message);
+    throw error;
   }
 };
 

@@ -18,7 +18,7 @@ exports.register = async (req, res) => {
 
     res.status(201).json({ user, message: "User created successfully" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json(error);
   }
 };
 
@@ -74,6 +74,6 @@ exports.createFirestoreUser = async (req, res) => {
     await authService.createFirestoreUser(userId, userData);
     res.status(201).json({ message: "User created in Firestore successfully" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error });
   }
 };
