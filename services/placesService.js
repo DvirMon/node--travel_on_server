@@ -1,4 +1,4 @@
-const db = require("../config/firebase");
+const { db } = require("../config/firebase");
 const mapToDate = require("../helpers/mapToDate");
 
 // Service to interact with Firestore
