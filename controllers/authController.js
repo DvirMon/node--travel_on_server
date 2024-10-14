@@ -1,6 +1,6 @@
 // controllers/authController.js
 const authService = require("../services/authService");
-const mapUserRecordToUser = require("../helpers/mapToUser")
+const mapUserRecordToUser = require("../helpers/mapToUser");
 
 // Register a new user with email and password
 exports.register = async (req, res) => {
@@ -11,16 +11,12 @@ exports.register = async (req, res) => {
   }
 
   try {
-    const userRecord = await authService.createUserWithEmailAndPassword(
+    const user = await authService.createUserWithEmailAndPassword(
       email,
       password
     );
 
-    
-
-    res
-      .status(201)
-      .json({ userId: userRecord.uid, message: "User created successfully" });
+    res.status(201).json({ user, message: "User created successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -42,9 +38,7 @@ exports.login = async (req, res) => {
 
     // const user = mapUserRecordToUser(userRecord)
 
-    res
-      .status(200)
-      .json({ userRecord, message: "Login successful" });
+    res.status(200).json({ userRecord, message: "Login successful" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
