@@ -9,6 +9,7 @@ const errorHandler = require("./middleware/errorHandler");
 const authRoutes = require('./routes/authRoutes');
 const placesRoutes = require("./routes/placesRoutes");
 const favoritesRoutes = require('./routes/favoritesRoutes');
+const usersRoutes = require('./routes/usersRoutes');
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use("/api/places", placesRoutes);
 
 // Use the favorites routes
 app.use('/api/favorites', favoritesRoutes);
+
+app.use('/api/users', usersRoutes);
 
 app.get("/", (req, res) => {
   res.send("Server is running");
