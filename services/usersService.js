@@ -13,7 +13,7 @@ const saveUserToFirestore = async (user) => {
 // Service method to fetch a user by UID
 const getUserById = async (uid) => {
   try {
-    const userDoc = await firestore().collection("users").doc(uid).get();
+    const userDoc = await db.collection("users").doc(uid).get();
 
     if (!userDoc.exists) {
       throw new Error("User not found");

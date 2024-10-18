@@ -15,10 +15,10 @@ const verifyUserToken = async (req, res, next) => {
   try {
     // const decodedToken = await auth.verifyIdToken(idToken); // Verify the token
     const decodedToken = jwtDecode(idToken);
-
     console.log(decodedToken)
 
-    req.user = decodedToken; // Attach the decoded user information to the request
+    
+    req.user = 'decodedToken'; // Attach the decoded user information to the request
     next(); // Continue to the next middleware or route handler
   } catch (error) {
     return res.status(403).send("Unauthorized: Invalid token");
