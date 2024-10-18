@@ -1,9 +1,21 @@
 const admin = require("firebase-admin");
 const path = require("path");
 
-const serviceAccount = require(path.resolve(
-  process.env.FIREBASE_SERVICE_ACCOUNT
-));
+const serviceAccount = {
+  type: "service_account",
+  project_id: process.env.FIREBASE_PROJECT_ID,
+  private_key_id: "4deec19707ce34504b4c3b16b82c333ca7d8488c",
+  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  client_id: "111836348033994324297",
+  auth_uri: "https://accounts.google.com/o/oauth2/auth",
+  token_uri: "https://oauth2.googleapis.com/token",
+  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  client_x509_cert_url:
+    "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-4c2te%40travel-on-811d5.iam.gserviceaccount.com",
+  universe_domain: "googleapis.com",
+};
+
 const credential = admin.credential.cert(serviceAccount);
 const databaseURL = process.env.FIREBASE_DATABASE_URL;
 
