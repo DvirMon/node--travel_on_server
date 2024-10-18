@@ -4,7 +4,6 @@ const favoritesService = require("../services/favoritesService");
 // Controller for fetching favorites
 exports.getFavorites = async (req, res) => {
   const { userId } = req.params;
-  console.log(userId)
   try {
     const favorites = await favoritesService.loadFavorites(userId);
     res.status(200).json(favorites);

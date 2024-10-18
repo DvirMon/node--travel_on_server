@@ -29,9 +29,6 @@ const signInWithEmailAndPassword = async (email, password) => {
   try {
     const userRecord = await auth.getUserByEmail(email);
 
-    console.log(userRecord)
-
-
     // 2. Fetch additional user data from Firestore using the user's UID
     const usersSnapshot = await db
       .collection("users")

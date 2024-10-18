@@ -10,12 +10,9 @@ const verifyUserToken = async (req, res, next) => {
     return res.status(401).send("Unauthorized: No token provided");
   }
 
-  console.log(idToken)
-
   try {
     // const decodedToken = await auth.verifyIdToken(idToken); // Verify the token
     const decodedToken = jwtDecode(idToken);
-    console.log(decodedToken)
 
     
     req.user = 'decodedToken'; // Attach the decoded user information to the request
