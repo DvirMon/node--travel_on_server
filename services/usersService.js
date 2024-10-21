@@ -1,4 +1,4 @@
-const { auth, db } = require("../config/firebase");
+const { db } = require("../config/firebase");
 const COLLECTION_USERS = process.env.FIREBASE_COLLECTION_USERS;
 
 // Function to save the user object to Firestore in the COLLECTION_USERS collection
