@@ -2,9 +2,11 @@
 const {db} = require("../config/firebase");
 const createFavorite = require("../helpers/createFavorite");
 
+const COLLECTION_FAVORITES = process.env.FIREBASE_COLLECTION_FAVORITES;
+
 // Create a new favorite document
 async function createNewFavorite(userId) {
-  const favoritesRef = db.collection("favorites");
+  const favoritesRef = db.collection(COLLECTION_FAVORITES);
   const newFavorite = createFavorite(userId); // Assuming a helper function exists
   const docRef = await favoritesRef.add(newFavorite);
 
@@ -13,7 +15,7 @@ async function createNewFavorite(userId) {
 
 // Load favorites for a specific user
 async function loadFavorites(userId) {
-  const favoritesRef = db.collection("favorites");
+  const favoritesRef = db.collection(COLLECTION_FAVORITES);
   const snapshot = await favoritesRef.where("userId", "==", userId).get();
 
   if (snapshot.empty) {
@@ -31,7 +33,7 @@ async function loadFavorites(userId) {
 
 // Create a new favorite for a user
 async function createNewFavorite(userId) {
-  const favoritesRef = db.collection("favorites");
+  const favoritesRef = db.collection(COLLECTION_FAVORITES);
   const newFavorite = createFavorite(userId);
   const docRef = await favoritesRef.add(newFavorite);
 
@@ -41,7 +43,7 @@ async function createNewFavorite(userId) {
 
 // Update a favorite document
 async function updateFavorite(docId, data) {
-  const favoriteDocRef = db.collection("favorites").doc(docId);
+  const favoriteDocRef = db.collection(COLLECTION_FAVORITES).doc(docId);
   await favoriteDocRef.set(data);
 }
 
