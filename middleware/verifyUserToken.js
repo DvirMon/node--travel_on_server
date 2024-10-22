@@ -9,9 +9,6 @@ const verifyUserToken = async (req, res, next) => {
   }
 
   try {
-    // const decodedToken = await auth.verifyIdToken(idToken); // Verify the token
-    // const decodedToken = jwtDecode(idToken);
-    // console.log(decodedToken)
 
     req.user = { uid: idToken }; // Attach the decoded user information to the request
     next(); // Continue to the next middleware or route handler
