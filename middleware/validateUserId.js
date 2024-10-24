@@ -1,9 +1,9 @@
 // middleware/validateUserId.js
 const validateUserId = (req, res, next) => {
-  const { userId } = req.body;
+  const { uid } = req.body;
 
   // Check if userId is provided
-  if (!userId) {
+  if (!uid) {
     return res.status(400).json({ message: "userId is required" });
   }
 

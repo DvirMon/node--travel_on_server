@@ -19,6 +19,7 @@ async function loadFavorites(userId) {
   const snapshot = await favoritesRef.where("userId", "==", userId).get();
 
   if (snapshot.empty) {
+
     return null;
   }
 

@@ -17,7 +17,8 @@ const getUserById = async (uid) => {
     const userDoc = await db.collection(COLLECTION_USERS).doc(uid).get();
 
     if (!userDoc.exists) {
-      throw new Error("User not found");
+      // throw new Error("User not found");
+      return null;
     }
 
     return userDoc.data(); // Return the user data
@@ -26,12 +27,12 @@ const getUserById = async (uid) => {
   }
 };
 
-const createFirestoreUser = async (userId, userData) => {
+const createFirestoreUser = async (user) => {
   try {
-    await db.collection(COLLECTION_USERS).doc(userId).set(userData);
+    await db.collection(COLLECTION_USERS).doc(user.uid).set(user);
     return { success: true };
   } catch (error) {
-    throw new Error("Error creating user in Firestore: " + error.message);
+    return error;
   }
 };
 
